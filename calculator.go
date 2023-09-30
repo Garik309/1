@@ -2,6 +2,7 @@ package main
 
 import (
 	"bufio"
+	"errors"
 	"fmt"
 	"os"
 	"strings"
@@ -131,6 +132,12 @@ func PrintRome(x int) {
 }
 
 func main() {
+	Input_Err := errors.New("Вывод ошибки,входное число больше десяти, или меньше 1.")
+	Rome_Minus := errors.New("Вывод ошибки, так как в римской системе нет отрицательных чисел.")
+	Rome_i_Arab := errors.New("Вывод ошибки, так как используются одновременно разные системы счисления.")
+	One_Digit := errors.New("Вывод ошибки, так как строка не является математической операцией.")
+	Wrong_Op := errors.New("Вывод ошибки, так как формат математической операции не удовлетворет заданию — два операнда и один оператор.")
+
 	reader := bufio.NewReader(os.Stdin)
 	var a, b, c string
 	text, _ := reader.ReadString('\n')
@@ -149,7 +156,7 @@ func main() {
 		zn2 = ToDigit(c)
 
 		if zn1 > 10 || zn2 > 10 || zn1 == '-' || zn2 == '-' || zn1 < 1 || zn2 < 1 {
-			fmt.Println("ERR: входное число больше десяти, или меньше 1, алло")
+			fmt.Println(Input_Err)
 			return
 		}
 
@@ -165,19 +172,19 @@ func main() {
 
 			} else {
 
-				fmt.Println("ERR: в римской системе нет отрицательных чисел.")
+				fmt.Println(Rome_Minus)
 			}
 		} else if IsRome(a) || IsRome(c) {
 
-			fmt.Println("ERR: одновременно используются разные системы счисления.")
+			fmt.Println(Rome_i_Arab)
 
 		} else {
 
 			fmt.Println(calcul(zn1, zn2, b))
 		}
-	} else if len(sub) < 3 {
-		fmt.Println("ERR: строка не является математической операцией")
+	} else if len(sub) == 1 {
+		fmt.Println(One_Digit)
 	} else {
-		return
+		fmt.Println(Wrong_Op)
 	}
 }
