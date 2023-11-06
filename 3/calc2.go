@@ -53,7 +53,7 @@ func main() {
 			}
 
 			var s string = " "
-			s = c
+			s = a
 
 			fmt.Println(s)
 			return
