@@ -92,7 +92,7 @@ func main() {
 
 		}
 
-	} else if len(sub) == 1 || len(sub) == 2 || len(sub) >= 5 {
+	} else if len(sub) == 1 || len(sub) == 2 || len(sub) > 5 {
 		fmt.Println(Err)
 	}
 
@@ -113,19 +113,53 @@ func main() {
 				return
 			}
 
-			d = d[1 : len(d)-0]
+			a = a[1 : len(a)-0]
+			b = b[0 : len(b)-1]
+
+			d = d[1 : len(d)-1]
 
 			if b == d {
 
 				var s string = " "
 				s = a
 
-				fmt.Println(s + " \"")
+				fmt.Println("\"" + s + " \"")
 				return
 			}
-		}
-	} else if len(sub) == 1 || len(sub) == 2 || len(sub) >= 5 {
-		fmt.Println(Err)
-	}
+			if a == d {
+				var s string = " "
+				s = b
 
+				fmt.Println("\" " + s + "\"")
+				return
+			}
+
+		}
+
+	}
+	if len(sub) == 5 {
+
+		a := sub[0]
+		b := sub[1]
+		c := sub[2]
+		d := sub[3]
+		e := sub[4]
+		if c != "-" {
+			fmt.Println(Err)
+			return
+		}
+		if c == "-" && d == "\"" && e == "\"" {
+			if len(a)+len(b) > 10 || Pack.NePlusMinus(a) || Pack.NePlusMinus(b) || d != "\"" || e != "\"" {
+				fmt.Println(Err)
+				return
+			}
+
+			var s string = " "
+			s = a + b
+
+			fmt.Println(s)
+			return
+		}
+
+	}
 }
