@@ -51,12 +51,26 @@ func main() {
 				fmt.Println(Err)
 				return
 			}
+			a = a[1 : len(a)-1]
+			c = c[1 : len(c)-1]
+			sub1 := strings.Split(a, "")
 
-			var s string = " "
-			s = a
+			for i := 0; i <= len(a)-1; i++ {
 
-			fmt.Println(s)
-			return
+				sl := []string{sub1[i]}
+				for _, value := range sl {
+
+					if c == value {
+						fmt.Println(value)
+						var s string = " "
+						s = sub1[i-1] + sub1[i+1]
+
+						fmt.Println(s)
+						return
+					}
+
+				}
+			}
 
 		} else if b == "/" {
 			x = Pack.ToDigit(c)
