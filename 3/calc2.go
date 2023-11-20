@@ -53,24 +53,27 @@ func main() {
 			}
 			a = a[1 : len(a)-1]
 			c = c[1 : len(c)-1]
+
 			sub1 := strings.Split(a, "")
+			sub2 := strings.Split(c, "")
 
-			for i := 0; i <= len(a)-1; i++ {
+			var s string = " "
 
-				sl := []string{sub1[i]}
-				for _, value := range sl {
+			for _, value := range sub1 {
+				for _, valuec := range sub2 {
 
-					if c == value {
-						fmt.Println(value)
-						var s string = " "
-						s = sub1[i-1] + sub1[i+1]
+					if value == valuec {
 
-						fmt.Println(s)
-						return
+						s = strings.ReplaceAll(a, c, "")
+
 					}
-
 				}
+
 			}
+
+			fmt.Println("\"" + s + "\"")
+			return
+			//}
 
 		} else if b == "/" {
 			x = Pack.ToDigit(c)
